@@ -1,6 +1,24 @@
 // Semantic build-versioning system for Gradle
 // https://github.com/alcideio/gradle-semantic-build-versioning#introduction
 
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
+    }
+    dependencies {
+        classpath ("com.netflix.nebula:nebula-publishing-plugin:9.5.4")
+    }
+}
+
+apply {
+    plugin("nebula.maven-publish")
+    plugin("nebula.javadoc-jar")
+    plugin("nebula.source-jar")
+}
+
 plugins {
     java
     application
@@ -18,13 +36,10 @@ java {
 //    withJavadocJar()
 }
 
-
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
-
-//    mavenLocal()
 
     maven {
         url = uri("https://oss.sonatype.org/content/groups/public")
